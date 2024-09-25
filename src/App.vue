@@ -1,6 +1,6 @@
 <template>
   <!-- Her er vores dom elementer -->
-
+  
   <!--indsat billede fra nettet-->
   <img
     src="https://chirpforbirds.com/wp-content/uploads/2021/02/Blog-featured-image-2-Kingfisher.jpg"
@@ -16,18 +16,38 @@
   <input type="number" v-model="kmsToFly" placeholder="Kilometers" />
   <button @click="fly">Fly</button>
 </template>
+
 <script>
-import { ref } from 'vue';
-export default {
-  setup() {
-    const test = ref(true);
+import { ref, reactive } from 'vue'; 
 
-    function testFunc(event) {}
+export default { 
+  setup() { 
+    // Mine variabler
+    const gramsToEat = ref(0);
+    const kmsToFly = ref(0);
 
+    //mine objekter
+    const pepita = reactive({
+      energy: 0,
+    });
+
+    // mine funktioner
+    function eat() {
+      pepita.energy += gramsToEat.value * 4;
+    }
+
+    function fly() {
+      pepita.energy -= kmsToFly.value * 2 + 10;
+    }
+
+    // Husk at return'e alt!!
     return {
-      test,
-      testFunc,
+      gramsToEat,
+      kmsToFly,
+      eat,
+      pepita,
+      fly,
     };
-  },
+  }
 };
 </script>
