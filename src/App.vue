@@ -1,3 +1,26 @@
+<script setup>
+import { ref, reactive } from 'vue';
+
+// Mine variabler
+const gramsToEat = ref(0);
+const kmsToFly = ref(0);
+
+// mine objekter
+const pepita = reactive({
+  energy: 0,
+});
+
+// mine funktioner
+function eat() {
+  pepita.energy += gramsToEat.value * 4;
+}
+
+function fly() {
+  pepita.energy -= kmsToFly.value * 2 + 10;
+}
+</script>
+
+
 <template>
   <!-- Her er vores dom elementer -->
   
@@ -17,37 +40,9 @@
   <button @click="fly">Fly</button>
 </template>
 
-<script>
-import { ref, reactive } from 'vue'; 
+<style scoped>
+img {
+  border: 3px solid black;
+}
 
-export default { 
-  setup() { 
-    // Mine variabler
-    const gramsToEat = ref(0);
-    const kmsToFly = ref(0);
-
-    //mine objekter
-    const pepita = reactive({
-      energy: 0,
-    });
-
-    // mine funktioner
-    function eat() {
-      pepita.energy += gramsToEat.value * 4;
-    }
-
-    function fly() {
-      pepita.energy -= kmsToFly.value * 2 + 10;
-    }
-
-    // Husk at return'e alt!!
-    return {
-      gramsToEat,
-      kmsToFly,
-      eat,
-      pepita,
-      fly,
-    };
-  }
-};
-</script>
+</style>
